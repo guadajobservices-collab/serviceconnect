@@ -1,6 +1,8 @@
 FROM node:20-alpine AS builder
 RUN npm install -g pnpm@9 --quiet
 WORKDIR /app
+# Force development pour installer les devDependencies (next, tailwind, typescript...)
+ENV NODE_ENV=development
 COPY . .
 RUN pnpm install --no-frozen-lockfile
 ENV NEXT_TELEMETRY_DISABLED=1
