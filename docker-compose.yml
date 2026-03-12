@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgis/postgis:16-3.4-alpine
+    container_name: serviceconnect-db
+    environment:
+      POSTGRES_USER: serviceconnect
+      POSTGRES_PASSWORD: serviceconnect2026
+      POSTGRES_DB: serviceconnect
+    ports:
+      - "5433:5432"
+    volumes:
+      - sc_pgdata:/var/lib/postgresql/data
+    networks:
+      - serviceconnect
+
+  redis:
+    image: redis:7-alpine
+    container_name: serviceconnect-redis
+    ports:
+      - "6380:6379"
+    networks:
+      - serviceconnect
+
+volumes:
+  sc_pgdata:
+
+networks:
+  serviceconnect:
+    name: serviceconnect
+    driver: bridge
