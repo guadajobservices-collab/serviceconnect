@@ -6,7 +6,7 @@ import { Zap, Mail, Lock, Eye, EyeOff, User, Phone, ArrowRight, Check } from 'lu
 
 function InscriptionForm() {
   const searchParams = useSearchParams()
-  const roleParam = searchParams.get('role') as 'client' | 'provider' | null
+  const roleParam = searchParams?.get('role') as 'client' | 'provider' | null
 
   const [role, setRole] = useState<'client' | 'provider'>(roleParam || 'client')
   const [firstName, setFirstName] = useState('')
